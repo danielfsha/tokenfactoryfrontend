@@ -14,10 +14,10 @@ const Heading = () => {
         >
           Designed and developed by daniel fisseha
         </Link>
-        <p class="mt-4 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+        <p className="mt-4 text-4xl font-semibold tracking-tight text-white lg:text-5xl">
           Token Creation Factory
         </p>
-        <p class="max-w-xl mt-4 text-lg text-gray-400 pb-12">
+        <p className="max-w-xl mt-4 text-lg text-gray-400 pb-12">
           Easily create ERC20 Tokens on Sepolia testnet.
         </p>
       </div>

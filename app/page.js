@@ -29,7 +29,7 @@ export default function Home() {
 
 
   return (
-    <section class="bg-[#1a1d27] relative overflow-hidden min-h-screen">
+    <section className="bg-[#1a1d27] relative overflow-hidden min-h-screen">
       <Nav />
       <Heading />
       {

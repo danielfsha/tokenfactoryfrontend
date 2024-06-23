@@ -22,7 +22,8 @@ const Form = () => {
 
   const createToken = async (e) => {
     e.preventDefault();
-    if (account == undefined) return;
+
+    if (account === undefined) return;
 
     const recipient = hasCustomRecipient ? to : account.address;
 
@@ -38,19 +39,21 @@ const Form = () => {
     const transaction = await prepareContractCall({
       contract: CONTRACT,
       method: "deployToken",
-      params: [name, ticker, intialSupply, totalSupply, to],
+      params: [name, ticker, intialSupply, totalSupply, recipient],
     });
 
     sendTransaction(transaction);
+
+    return transaction;
   };
 
   return (
-    <form className="max-w-md" onSubmit={createToken}>
-      <div class="card">
+    <div className="max-w-md">
+      <div className="card">
         <input
           type="text"
           placeholder="Enter Token Name"
-          class="input"
+          className="input"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -102,7 +105,7 @@ const Form = () => {
           Create Token
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 
