@@ -1,50 +1,53 @@
 "use client";
 
 import { useState } from "react";
+
 import Switch from "./Switch";
 
-import { prepareContractCall, sendTransaction } from "thirdweb";
+import { prepareContractCall } from "thirdweb";
 
-import { useActiveAccount } from "thirdweb/react";
+import { useActiveAccount, useSendTransaction } from "thirdweb/react";
 
 import { CONTRACT } from "@/utils/constants";
 
 const Form = () => {
   const [name, setName] = useState("");
   const [ticker, setTicker] = useState("");
-  const [intialSupply, setInitialSupply] = useState(0);
-  const [totalSupply, setTotalSupply] = useState(0);
+  const [intialSupply, setInitialSupply] = useState("");
+  const [totalSupply, setTotalSupply] = useState("");
   const [to, setTo] = useState("");
 
   const account = useActiveAccount();
+
+  const { mutate: sendTransaction, isPending } = useSendTransaction();
 
   const [hasCustomRecipient, setHasCustomRecipient] = useState(false);
 
   const createToken = async (e) => {
     e.preventDefault();
 
-    if (account === undefined) return;
-
-    const recipient = hasCustomRecipient ? to : account.address;
-
     if (
-      name.length == 0 ||
-      ticker.length == 0 ||
+      !account ||
+      name == "" ||
+      ticker == "" ||
       intialSupply == 0 ||
-      totalSupply == 0 ||
-      recipient == undefined
+      totalSupply == 0
     )
       return;
 
-    const transaction = await prepareContractCall({
+    if (hasCustomRecipient && to == "") {
+      setTo(account.address);
+    } else if (!hasCustomRecipient) {
+      setTo(account.address);
+    }
+
+    const tx = await prepareContractCall({
       contract: CONTRACT,
       method: "deployToken",
-      params: [name, ticker, intialSupply, totalSupply, recipient],
+      params: [name, ticker, intialSupply, totalSupply, to],
     });
 
-    sendTransaction(transaction);
-
-    return transaction;
+    sendTransaction(tx);
   };
 
   return (
