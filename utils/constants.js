@@ -4,9 +4,13 @@ export const client = createThirdwebClient({
     clientId: process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID,
 })
 
-export const chain = defineChain(2442)
+export const chain = defineChain(11155111)
 
-const contractAddress = '0xeC58fC513F3f5F444d7CC7527Bf913EaC70CF83B'
+
+// SEPOLIA: 0xE3a503a5ca2A9124882Bf888E2a277bc70B8cD86
+// Polygon: 0xeC58fC513F3f5F444d7CC7527Bf913EaC70CF83B
+
+const contractAddress = '0xE3a503a5ca2A9124882Bf888E2a277bc70B8cD86'
 
 const contractABI = [
     {

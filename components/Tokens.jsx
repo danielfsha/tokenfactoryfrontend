@@ -1,4 +1,5 @@
 const Tokens = ({ tokens }) => {
+  console.log(tokens);
   return (
     <div className="wrapper">
       <h1 className="text-white pb-4">Previous Deployments</h1>
@@ -16,7 +17,7 @@ const Tokens = ({ tokens }) => {
           {tokens.map((token, index) => (
             <tr key={index}>
               <td>{token.name}</td>
-              <td>{token.symbol}</td>
+              <td>{token.ticker}</td>
               <td>
                 <a
                   href={`https://etherscan.io/address/${token.address}`}
@@ -24,7 +25,8 @@ const Tokens = ({ tokens }) => {
                   rel="noopener noreferrer"
                   className="link"
                 >
-                  {token.address.slice(0, 6)}...{token.address.slice(-6)}
+                  {token.tokenDeploymentAddress.slice(0, 6)}...
+                  {token.tokenDeploymentAddress.slice(-6)}
                 </a>
               </td>
             </tr>

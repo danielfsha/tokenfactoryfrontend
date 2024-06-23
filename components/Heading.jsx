@@ -18,7 +18,7 @@ const Heading = () => {
           Token Creation Factory
         </p>
         <p class="max-w-xl mt-4 text-lg text-gray-400 pb-12">
-          Easily create ERC20 Tokens on polygon ZkEVM Cardona testnet.
+          Easily create ERC20 Tokens on Sepolia testnet.
         </p>
       </div>
 
