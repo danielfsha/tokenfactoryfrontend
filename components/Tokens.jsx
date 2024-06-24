@@ -20,7 +20,7 @@ const Tokens = ({ tokens }) => {
               <td>{token.ticker}</td>
               <td>
                 <a
-                  href={`https://etherscan.io/address/${token.address}`}
+                  href={`https://sepolia.etherscan.io/address/${token.tokenDeploymentAddress}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link"
